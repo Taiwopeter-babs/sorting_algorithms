@@ -25,6 +25,7 @@ void print_number(int n)
 	}
 	printf("\n");
 }
+```
 The amount of time it would take for the above code to run is dependent on the value of n. If n is < 100, it would ttake less time to run compared to when n is 10 ** 34. This is the time complexity. In ```Big-O``` notation, we say
 its time complexity is ```O(n)```. 
 
