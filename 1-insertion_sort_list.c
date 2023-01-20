@@ -29,9 +29,11 @@ void insertion_sort_list(listint_t **list)
 			keynode->next = curr;
 			/**
 			 * if keynode->prev is not NULL
-			 * set curr to it; meaning keynode is the
-			 * beginning of the sorted sublist, otherwise
-			 * set the head of the list to keynode
+			 * set curr to it; meaning keynode->prev is the
+			 * new curr in the loop since swap occurs once at a time,
+			 * otherwise set the head of the list to keynode;
+			 * keynode has been swapped to the beginning of the list i.e
+			 * it is the node with the least data
 			 */
 			if (keynode->prev)
 				curr = keynode->prev;
