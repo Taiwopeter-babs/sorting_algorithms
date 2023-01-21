@@ -25,6 +25,7 @@ void swap_values(int *first, int *second);
 void print_list(const listint_t *list);
 void quick_sort_part(int *array, size_t lb, size_t ub, size_t size);
 size_t partition_array(int *array, size_t lb, size_t ub, size_t arr_size);
+void shell_sort(int *array, size_t size);
 
 /* Sorting algorithms */
 void bubble_sort(int *array, size_t size);
