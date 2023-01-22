@@ -2,6 +2,7 @@
 #define SORT_H
 
 #include <stdio.h>
+#include <stdlib.h>
 
 
 /**
@@ -26,11 +27,17 @@ void print_list(const listint_t *list);
 void quick_sort_part(int *array, size_t lb, size_t ub, size_t size);
 size_t partition_array(int *array, size_t lb, size_t ub, size_t arr_size);
 void shell_sort(int *array, size_t size);
+void swap_node(listint_t **head, listint_t *node);
+
+int *_memset(int *array, int *byte, size_t n);
+int find_max(int *array, size_t size);
 
 /* Sorting algorithms */
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size); 
+void cocktail_sort_list(listint_t **list);
+void counting_sort(int *array, size_t size);
 
 #endif /* SORT_H */
