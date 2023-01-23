@@ -32,6 +32,10 @@ void swap_node(listint_t **head, listint_t *node);
 int *_memset(int *array, int *byte, size_t n);
 int find_max(int *array, size_t size);
 
+ssize_t partition_hoare(int *array, ssize_t lb, ssize_t ub, size_t arr_size);
+void quick_sort_hoare(int *array, size_t size);
+void quick_sort_recur(int *array, size_t lb, size_t ub, size_t arr_size);
+
 /* Sorting algorithms */
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
