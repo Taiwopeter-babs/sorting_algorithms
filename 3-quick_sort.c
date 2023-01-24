@@ -16,28 +16,24 @@ void quick_sort(int *array, size_t size)
 
 /**
  * quick_sort_part - recursive function repeating partitioning and sorting
- * @arr: parameter array
+ * @array: parameter array
  * @lb: lower bound of array. This changes as function is called
  * @ub: upper bound of array. Also changes as function is recursively called
+ * @arr_size: size of array
  * Return: nothing
  */
-void quick_sort_part(int *array, size_t lb, size_t ub, size_t arr_size)
+void quick_sort_part(int *array, ssize_t lb, ssize_t ub, size_t arr_size)
 {
-	size_t loc;
+	ssize_t loc;
 
 	if (lb < ub)
 	{
 		loc = partition_array(array, lb, ub, arr_size);
 
-		if (loc > 0)
-		{
-			quick_sort_part(array, lb, loc - 1, arr_size);
-		}
+		quick_sort_part(array, lb, loc - 1, arr_size);
 
 		quick_sort_part(array, loc + 1, ub, arr_size);
 	}
-
-	return;
 }
 
 /**
@@ -59,40 +55,49 @@ void swap_values(int *first, int *second)
  * partition_array - separats the array elements, based on the pivot
  * element. It uses the Lomuto partition - last element in the array
  * is picked as pivot.
- * @arr: array or subarray, as the case may be, to be partitioned
+ * @array: array or subarray, as the case may be, to be partitioned
  * @lb: index of lower bound of array or subarray
  * @ub: index of upper bound of array or subarray
+ * @arr_size: size of array
  * Return: location / index of the pivot element
  */
-size_t partition_array(int *array, size_t lb, size_t ub, size_t arr_size)
+ssize_t partition_array(int *array, ssize_t lb, ssize_t ub, size_t arr_size)
 {
 	int pivot;
-	size_t start, end;
+	ssize_t start, current;
 
 	start = lb;
-	end =  lb;
+	current = lb;
 	pivot = array[ub];
 
-	while (end < ub)
+	for (start = lb; start < ub; start++)
 	{
 		/* if element <= pivot; swap occurs */
-		if (array[end] <= pivot)
+		if (array[start] <= pivot)
 		{
-			swap_values(&array[end], &array[start]);
-			print_array(array, arr_size);
-			/* increment the pointer on the element > pivot */
-			start++;
+			/**
+			 * if array[start] < pivot and current == start,
+			 * then swaps will occur on the same element which makes
+			 * the algorithm slower
+			 */
+			if (current != start)
+			{
+				swap_values(&array[current], &array[start]);
+				print_array(array, arr_size);
+			}
+			current++;
 		}
-		/* increment the pointer on the element <= pivot */
-		end++;
-	}
 
+	}
 	/**
-	 * arr[start] is > arr[ub], since start is on the element > pivot
-	 * hence, moves the pivot element to the 'center' of the partitioned
-	 * array [ elements < pivot | pivot | elements > pivot ]
+	 * swaps should only occur on different elements
+	 * if current == ub, then array[ub] is the largest element
+	 * thus swap should not occur
 	 */
-	swap_values(&array[ub], &array[start]);
-	print_array(array, arr_size);
-	return (start);
+	if (current != ub)
+	{
+		swap_values(&array[ub], &array[current]);
+		print_array(array, arr_size);
+	}
+	return (current);
 }
