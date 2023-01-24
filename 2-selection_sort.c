@@ -28,6 +28,13 @@ void selection_sort(int *array, size_t size)
 				min_idx = j;
 			j++;
 		}
+		/**
+		 * If the element at the current index is < element at next
+		 * index, and j has reached the end of the loop,
+		 * swap will not occur, continue the first iteration
+		 */
+		if (min_idx == i)
+			continue;
 		swap_values(&array[min_idx], &array[i]);
 		print_array(array, size);
 	}
